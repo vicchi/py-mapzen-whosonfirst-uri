@@ -19,7 +19,7 @@ desc = open("README.md").read()
 
 setup(
     name='mapzen.whosonfirst.uri',
-    namespace_packages=['mapzen', 'mapzen.whosonfirst', 'mapzen.whosonfirst.uri'],
+    namespace_packages=['mapzen', 'mapzen.whosonfirst'],
     version=version,
     description='Shared utilities for working with URIs for Who\'s On First documents',
     author='Mapzen',
