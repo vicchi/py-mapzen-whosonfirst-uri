@@ -30,6 +30,7 @@ setup(
         ],
     packages=packages,
     scripts=[
+        "scripts/wof-id2path"
         ],
     download_url='https://github.com/whosonfirst/py-mapzen-whosonfirst-uri/releases/tag/' + version,
     license='BSD')
