@@ -25,6 +25,12 @@ import mapzen.whosonfirst.uri
 mapzen.whosonfirst.uri.id2fname(2179537)
 '2179537.geojson'
 
+mapzen.whosonfirst.uri.id2fname(2179537, 'alt', 'source')
+'2179537-alt-source.geojson'
+
+mapzen.whosonfirst.uri.id2fname(2179537, 'alt', 'source', 'function')
+'2179537-alt-source-function.geojson'
+
 mapzen.whosonfirst.uri.id2relpath(2179537)
 '217/953/7/2179537.geojson'
 
@@ -35,5 +41,4 @@ mapzen.whosonfirst.uri.id2abspath('https://whosonfirst.mapzen.com/data', 2179537
 ## See also
 
 * https://github.com/whosonfirst/whosonfirst-data/
-
 
