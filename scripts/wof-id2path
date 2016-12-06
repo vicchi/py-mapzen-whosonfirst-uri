@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+# -*-python-*-
+
+import os
+import sys
+import logging
+
+import mapzen.whosonfirst.uri
+
+if __name__ == "__main__":
+
+    import optparse
+    opt_parser = optparse.OptionParser()
+
+    opt_parser.add_option('-r', '--relpath', dest='relpath', action='store_true', default=False, help='...')
+    opt_parser.add_option('-a', '--abspath', dest='abspath', action='store_true', default=False, help='...')
+    opt_parser.add_option('--abspath-root', dest='abspath_root', action='store', default=None, help='...')    
+    
+    opt_parser.add_option('-A', '--alt', dest='alt', action='store_true', default=False, help='...')
+    opt_parser.add_option('-S', '--source', dest='source', action='store', default=None, help='...')
+    opt_parser.add_option('-F', '--function', dest='function', action='store', default="", help='...')
+    opt_parser.add_option('-E', '--extras', dest='extras', action='store', default="", help='...')
+    opt_parser.add_option('--strict', dest='strict', action='store_true', default=False, help='...')            
+
+    opt_parser.add_option('-v', '--verbose', dest='verbose', action='store_true', default=False, help='Be chatty (default is false)')
+    options, args = opt_parser.parse_args()
+
+    if options.verbose:	
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+
+    if options.abspath and not options.abspath_root:
+        logging.error("Missing abspath-root flag")
+        sys.exit(1)
+
+    kwargs = {}
+
+    if options.alt:
+
+        kwargs["alt"] = True
+
+        if not options.source:
+            logging.error("Missing source for alternate geometry")
+            sys.exit(1)
+            
+        kwargs["source"] = options.source
+        kwargs["function"] = options.function        
+        kwargs["extras"] = options.extras.split(",")
+        kwargs["strict"] = options.strict
+        
+    for id in args:
+
+        if options.abspath:
+            print mapzen.whosonfirst.uri.id2abspath(options.abspath_root, id, **kwargs)
+        elif options.relpath:
+            print mapzen.whosonfirst.uri.id2relpath(id, **kwargs)
+        else:
+            print mapzen.whosonfirst.uri.id2fname(id, **kwargs)
+
+    sys.exit(0)
