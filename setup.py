@@ -24,8 +24,11 @@ setup(
     description='Shared utilities for working with URIs for Who\'s On First documents',
     author='Mapzen',
     url='https://github.com/whosonfirst/py-mapzen-whosonfirst-uri',
-    install_requires=['py-mz-wof-sources'],
+    install_requires=[
+        'mapzen.whosonfirst.sources>=0.066',
+    ],
     dependency_links=[
+        'https://github.com/whosonfirst/py-mapzen-whosonfirst-/tarball/master#egg=mapzen.whosonfirst.sources-0.066',
         ],
     packages=packages,
     scripts=[
