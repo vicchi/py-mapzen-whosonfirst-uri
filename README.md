@@ -19,17 +19,13 @@ sudo python setup.py install
 
 ## Usage
 
+### Simple 
+
 ```
 import mapzen.whosonfirst.uri
 
 mapzen.whosonfirst.uri.id2fname(2179537)
 '2179537.geojson'
-
-mapzen.whosonfirst.uri.id2fname(2179537, 'alt', 'source')
-'2179537-alt-source.geojson'
-
-mapzen.whosonfirst.uri.id2fname(2179537, 'alt', 'source', 'function')
-'2179537-alt-source-function.geojson'
 
 mapzen.whosonfirst.uri.id2relpath(2179537)
 '217/953/7/2179537.geojson'
@@ -37,6 +33,30 @@ mapzen.whosonfirst.uri.id2relpath(2179537)
 mapzen.whosonfirst.uri.id2abspath('https://whosonfirst.mapzen.com/data', 2179537)
 'https://whosonfirst.mapzen.com/data/217/953/7/2179537.geojson'
 ```
+
+### Fancy
+
+```
+import mapzen.whosonfirst.uri
+
+kwargs = {
+	"alt": True,
+	"source":"mapzen",
+	"function":"display",
+	"extras": [1024],
+	"strict": True
+}
+
+mapzen.whosonfirst.uri.id2fname(2179537, **kwargs)
+'2179537-alt-mapzen-display-1024.geojson'
+
+mapzen.whosonfirst.uri.id2relpath(2179537, **kwargs)
+'217/953/7/2179537-alt-mapzen-display-1024.geojson'
+
+mapzen.whosonfirst.uri.id2abspath('https://whosonfirst.mapzen.com/data', 2179537, **kwargs)
+'https://whosonfirst.mapzen.com/data/217/953/7/2179537-alt-mapzen-display-1024.geojson'
+```
+
 
 ## See also
 
