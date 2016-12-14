@@ -28,7 +28,7 @@ setup(
         'mapzen.whosonfirst.sources>=0.066',
     ],
     dependency_links=[
-        'https://github.com/whosonfirst/py-mapzen-whosonfirst-/tarball/master#egg=mapzen.whosonfirst.sources-0.066',
+        'https://github.com/whosonfirst/py-mapzen-whosonfirst-sources/tarball/master#egg=mapzen.whosonfirst.sources-0.066',
         ],
     packages=packages,
     scripts=[
