@@ -1,7 +1,18 @@
 import logging
 import os
+import re
 import types
 import mapzen.whosonfirst.sources
+
+def is_alt_file(path):
+
+    abs_path = os.path.abspath(path)
+    fname = os.path.basename(abs_path)
+
+    if re.match(r'^\d+\-alt\-', fname):
+        return True
+    
+    return False
 
 def id2abspath(root, id, **kwargs):
 
