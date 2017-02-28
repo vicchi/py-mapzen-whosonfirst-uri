@@ -57,6 +57,9 @@ mapzen.whosonfirst.uri.id2abspath('https://whosonfirst.mapzen.com/data', 2179537
 'https://whosonfirst.mapzen.com/data/217/953/7/2179537-alt-mapzen-display-1024.geojson'
 ```
 
+## The Long Version
+
+Please read this: https://github.com/whosonfirst/whosonfirst-cookbook/blob/master/how_to/creating_alt_geometries.md
 
 ## See also
 
