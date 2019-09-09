@@ -52,10 +52,10 @@ if __name__ == "__main__":
     for id in args:
 
         if options.abspath:
-            print mapzen.whosonfirst.uri.id2abspath(options.abspath_root, id, **kwargs)
+            print(mapzen.whosonfirst.uri.id2abspath(options.abspath_root, id, **kwargs))
         elif options.relpath:
-            print mapzen.whosonfirst.uri.id2relpath(id, **kwargs)
+            print(mapzen.whosonfirst.uri.id2relpath(id, **kwargs))
         else:
-            print mapzen.whosonfirst.uri.id2fname(id, **kwargs)
+            print(mapzen.whosonfirst.uri.id2fname(id, **kwargs))
 
     sys.exit(0)

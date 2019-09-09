@@ -79,7 +79,7 @@ def id2fname(id, **kwargs):
             logging.warning("%s is not a valid (or known) source" % source)
     
             if strict:
-                raise Exception, "invalid filename options"
+                raise Exception("Invalid filename options")
                         
     if alt and source:
         # TO DO: test source against mapzen.whosonfirst.sources.is_valid_source
@@ -99,7 +99,7 @@ def id2fname(id, **kwargs):
         logging.warning("insufficient parameters for alt name")
         
         if strict:
-            raise Exception, "Invalid filename options"
+            raise Exception("Invalid filename options")
             
     else:
         pass
