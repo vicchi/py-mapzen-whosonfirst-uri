@@ -1,7 +1,6 @@
 import logging
 import os
 import re
-import types
 import mapzen.whosonfirst.sources
 
 def is_wof_file(path):
@@ -11,7 +10,7 @@ def is_wof_file(path):
 
     if re.match(r'^\d+(?:.*)?\.geojson$', fname):
         return True
-    
+
     return False
 
 def is_alt_file(path):
@@ -21,7 +20,7 @@ def is_alt_file(path):
 
     if re.match(r'^\d+\-alt\-(?:.*)\.geojson$', fname):
         return True
-    
+
     return False
 
 def id2abspath(root, id, **kwargs):
@@ -45,65 +44,65 @@ def id2fname(id, **kwargs):
     alt = kwargs.get('alt', None)
     source = kwargs.get('source', None)
     function = kwargs.get('function', None)
-    extras = kwargs.get('extras', [])    
+    extras = kwargs.get('extras', [])
     strict = kwargs.get('strict', False)
-    
+
     display = kwargs.get('display', None)    # deprecated
 
-    if type(alt) == types.StringType:
+    if type(alt) == bytes:
         logging.warning("please stop passing alt as a string!")
         source = alt
         alt = True
-        
+
     if display:
         logging.warning("please stop passing display as a kwarg!")
         function = display
-    
+
     parts = [ str(id) ]
-    
+
     if alt and source:
-    
+
         # this code does not exist yet
-        
+
         """
         src = mapzen.whosonfirst.source.source(source)
-        
+
         if src:
             if function and !src.is_valid_function(function):
                 logging.warning("%s is not a valid function for source %s" % (function, source))
         else:
             logging.warning("%s is not a valid source" % source)
         """
-            
+
         if not mapzen.whosonfirst.sources.is_valid_source(source):
             logging.warning("%s is not a valid (or known) source" % source)
-    
+
             if strict:
-                raise Exception, "invalid filename options"
-                        
+                raise Exception("invalid filename options")
+
     if alt and source:
         # TO DO: test source against mapzen.whosonfirst.sources.is_valid_source
         # TO DO: test function against... something?
         # TO DO: if either scenario fails then... what? more than a warning?
-        
+
         parts.append("alt")
         parts.append(source)
-        
+
         if function:
             parts.append(function)
 
-            extras = map(str, extras)
+            extras = list(map(str, extras))
             parts.extend(extras)
-            
+
     elif alt:
         logging.warning("insufficient parameters for alt name")
-        
+
         if strict:
-            raise Exception, "Invalid filename options"
-            
+            raise Exception("Invalid filename options")
+
     else:
         pass
-        
+
     fname = "-".join(parts)
     fname = fname + ".geojson"
 
@@ -113,7 +112,7 @@ def id2path(id):
 
     tmp = str(id)
     parts = []
-    
+
     while len(tmp) > 3:
         parts.append(tmp[0:3])
         tmp = tmp[3:]
